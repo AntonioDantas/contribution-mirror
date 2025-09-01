@@ -8,6 +8,8 @@ on:
 jobs:
   import-activity:
     runs-on: ubuntu-latest
+    permissions:      
+      contents: write 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,7 +25,6 @@ jobs:
         run: pip install requests
 
       - name: Run GitLab activity import script
-        # 👇 TODAS AS VARIÁVEIS AGORA USAM "SECRETS" 👇
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
           GITLAB_USER: ${{ secrets.GITLAB_USER }}
