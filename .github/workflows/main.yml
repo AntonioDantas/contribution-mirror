@@ -1,17 +1,33 @@
 name: Import GitLab Activity
+
 on:
   schedule:
-    - cron: '0 0 * * *' # Roda todo dia à meia-noite
-  workflow_dispatch: # Permite rodar manualmente
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
 jobs:
-  build:
+  import-activity:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Import GitLab activity
-        uses: daltonmenezes/gitlab-activity-importer@v1.1.0
         with:
-          gitlab_user: 'antoniojdf'
-          github_user_email: 'antoniojdf@tecgraf.puc-rio.br'
-          gitlab_private_token: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run GitLab activity import script
+        # 👇 TODAS AS VARIÁVEIS AGORA USAM "SECRETS" 👇
+        env:
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          GITLAB_USER: ${{ secrets.GITLAB_USER }}
+          GITHUB_USER_NAME: ${{ secrets.GITHUB_USER_NAME }}
+          GITHUB_USER_EMAIL: ${{ secrets.GITHUB_USER_EMAIL }}
+          GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
+        run: python import_gitlab_activity.py
