@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Import GitLab activity
-        uses: y-megane/gitlab-activity-importer@v1
+        uses: daltonmenezes/gitlab-activity-importer@v1.1.0
         with:
           gitlab_user: 'antoniojdf'
           github_user_email: 'antoniojdf@tecgraf.puc-rio.br'
