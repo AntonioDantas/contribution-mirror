@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Import GitLab activity
-        uses: miroslavpejic85/gitlab-activity-importer@v1
+        uses: y-megane/gitlab-activity-importer@v1
         with:
           gitlab_user: 'antoniojdf'
           github_user_email: 'antoniojdf@tecgraf.puc-rio.br'
