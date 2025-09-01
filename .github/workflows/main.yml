@@ -27,7 +27,7 @@ jobs:
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
           GITLAB_USER: ${{ secrets.GITLAB_USER }}
-          GITHUB_USER_NAME: ${{ secrets.GITHUB_USER_NAME }}
-          GITHUB_USER_EMAIL: ${{ secrets.GITHUB_USER_EMAIL }}
+          GITHUB_USER_NAME: AntonioDantas
+          GITHUB_USER_EMAIL: antonio_jdf@hotmail.com
           GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
         run: python import_gitlab_activity.py
