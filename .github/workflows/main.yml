@@ -1,0 +1,17 @@
+name: Import GitLab Activity
+on:
+  schedule:
+    - cron: '0 0 * * *' # Roda todo dia à meia-noite
+  workflow_dispatch: # Permite rodar manualmente
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Import GitLab activity
+        uses: miroslavpejic85/gitlab-activity-importer@v1
+        with:
+          gitlab_user: 'antoniojdf'
+          github_user_email: 'antoniojdf@tecgraf.puc-rio.br'
+          gitlab_private_token: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
