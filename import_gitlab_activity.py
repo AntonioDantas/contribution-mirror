@@ -7,7 +7,7 @@ GITLAB_USER = os.environ.get("GITLAB_USER")
 GITLAB_PRIVATE_TOKEN = os.environ.get("GITLAB_PRIVATE_TOKEN")
 GITHUB_USER_EMAIL = os.environ.get("GITHUB_USER_EMAIL")
 GITHUB_USER_NAME = os.environ.get("GITHUB_USER_NAME")
-GITLAB_URL = "https://gitlab.com"
+GITLAB_URL = os.environ.get("GITLAB_URL")
 ACTIONS_TO_TRACK = ['pushed', 'commented', 'approved', 'created', 'starred']
 
 if not all([GITLAB_USER, GITLAB_PRIVATE_TOKEN, GITHUB_USER_EMAIL, GITHUB_USER_NAME]):
@@ -20,7 +20,7 @@ def get_gitlab_events():
     headers = {"PRIVATE-TOKEN": GITLAB_PRIVATE_TOKEN}
     after_date = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
     
-    print(f"Buscando eventos após a data: {after_date}")
+    print(f"Buscando eventos em {GITLAB_URL} após a data: {after_date}")
     
     for action in ACTIONS_TO_TRACK:
         print(f"Buscando por ação: '{action}'...")
